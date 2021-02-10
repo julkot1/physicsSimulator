@@ -1,25 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import Matter from "matter-js";
+import Sketch from "./components/sketch";
+import Knob from "./components/knob";
+import Body from "./p5/body";
 
-function App() {
+/*
+ <div className="knobs">
+          <Knob color='red' text="body A velocity" bgColor="#aa2c34"/>
+          <Knob color='green' text="body A mass" min={2} bgColor="#27aa34"/>
+        </div>
+*/
+export default () =>{
+
+ 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+     <Sketch></Sketch>
     </div>
   );
-}
-
-export default App;
+};
