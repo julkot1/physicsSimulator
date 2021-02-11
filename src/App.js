@@ -6,8 +6,7 @@ import Body from "./p5/body";
 
 /*
  <div className="knobs">
-          <Knob color='red' text="body A velocity" bgColor="#aa2c34"/>
-          <Knob color='green' text="body A mass" min={2} bgColor="#27aa34"/>
+        
         </div>
 */
 export default () =>{
@@ -16,7 +15,6 @@ export default () =>{
 
   return (
     <div className="App">
-      
      <Sketch></Sketch>
     </div>
   );
