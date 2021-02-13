@@ -1,4 +1,4 @@
-import {Bodies, Vector, Body} from "matter-js";
+import  Matter, {Bodies} from "matter-js";
 import {background} from "../colors";
 export default class Ground{
     constructor(x, y, w, h, param, color){
@@ -16,10 +16,12 @@ export default class Ground{
         });
         p.endShape();
     }
-    setSlopeAngle(angle, canvasH){
-        const {x,y} = this.body.position;
-        this.y = this.w/Math.cos(angle);
-        this.body = Bodies.rectangle(x, canvasH-this.w*Math.tan(angle), this.w/Math.cos(angle), this.h, {isStatic: true, angle: angle});
-        console.log(this.w*Math.tan(angle));
+    setSlopeAngle(angle, width,height,e){
+        if(e)Matter.Composite.remove(e.engine.world, this.body)
+        const H = Math.sin(angle)*width/2;
+        const W = Math.cos(angle)*width/2;
+        
+        this.body=Bodies.rectangle(W*Math.sqrt(3)/4+30, height-(H/2), width/2, 10, {angle: angle, isStatic: true});
+        if(e)Matter.World.add(e.engine.world, this.body)
     }
 };

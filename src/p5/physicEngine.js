@@ -6,7 +6,10 @@ export default class PhysicEngine{
 
         this.engine = Engine.create();
         World.add(this.engine.world, Object.values(this.bodies).map(e=>e.body));
-        //Engine.run(this.engine);
+
+    }
+    play(){
+        Engine.run(this.engine);
     }
     show(p){
         //Engine.update(this.engine)
