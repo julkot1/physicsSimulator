@@ -16,8 +16,10 @@ export default class Ground{
         });
         p.endShape();
     }
-    setSlopeAngle(angle){
-        const {x, y} = this.body.position;
-        this.body = Bodies.rectangle(x, y, this.w/Math.cos(angle), this.h, {isStatic: true, angle: angle});
+    setSlopeAngle(angle, canvasH){
+        const {x,y} = this.body.position;
+        this.y = this.w/Math.cos(angle);
+        this.body = Bodies.rectangle(x, canvasH-this.w*Math.tan(angle), this.w/Math.cos(angle), this.h, {isStatic: true, angle: angle});
+        console.log(this.w*Math.tan(angle));
     }
 };

@@ -1,8 +1,9 @@
-import {Bodies} from "matter-js";
+import Matter, {Bodies} from "matter-js";
 
 export default class Body{
     constructor(x,y){
-        this.body = Bodies.circle(x, y, 50);
+        this.body = Bodies.circle(x, y, 30);
+   
     }
     show(p){
         p.fill(255);
@@ -13,7 +14,18 @@ export default class Body{
         });
         p.endShape();
     }
+    setMass(mass){
+      Matter.Body.set(this.body, {mass: mass})
+    }
+    setPositionFromAngle(angle, h, w){
+      Matter.Body.setPosition(this.body, {x: 40, y: 300-Math.tan(angle)*(w/2)-40})
+      //console.log( (-h)+(h-w*Math.tan(angle))-150);
+      console.log(Math.tan(angle)*w-150);
+
+     
+    }
 };
+
 
 
 /*
