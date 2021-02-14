@@ -15,5 +15,8 @@ export default class PhysicEngine{
         //Engine.update(this.engine)
         Object.values(this.bodies).forEach(e=>e.show(p));
     }
+    restart(){
+        Engine.clear(this.engine)
+    }
   
 }

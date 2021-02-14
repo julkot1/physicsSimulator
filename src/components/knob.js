@@ -7,13 +7,15 @@ export default (props) => {
         donutColor: '#0087fc',
         centerColor: background,
         centerFocusedColor: background,
-        bgrColor: '#17659C'
+        bgrColor: '#17659C',
+        
     };
     const {value, setValue,name,text, min, max,step} = props;
 
     return <div className="knob-container">
         <label>{text}</label>
         <Donut
+        spaceMaxFromZero={false}
         diameter={200}
         min={min||0}
         max={max||100}
@@ -24,7 +26,6 @@ export default (props) => {
         ariaLabelledBy={'my-label'}
         style={{padding: 15}}>
         </Donut>
-        {props.children&&props.children.find(e=>e.type=="p")}
     </div>
    
 }
