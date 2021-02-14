@@ -2,7 +2,7 @@ import Matter, {Bodies} from "matter-js";
 
 export default class Body{
     constructor(x,y, param){
-        this.body = Bodies.circle(x, y, 30,{mass: 0.85});
+        this.body = Bodies.circle(x, y, 30,{mass: 0.85, frictionAir: 0, friction:0, frictionStatic:0});
    
     }
     show(p){
@@ -16,12 +16,12 @@ export default class Body{
     }
     
     setPositionFromAngle(angle, h, w){
-      Matter.Body.setPosition(this.body, {x: 40, y: h-Math.sin(angle)*(w/2)-26})
+      Matter.Body.setPosition(this.body, {x: 40, y: h-Math.sin(angle)*(w/2)-22})
     }
-    setData({veliocity, slope, friction, mass, frictionStatic}){
+    setData({force, slope, friction, mass, frictionStatic}){
       this.body.mass = mass/10;
       this.body.friction = friction/10;
-      if(veliocity)Matter.Body.setVelocity(this.body, {x: Math.cos(slope)*veliocity, y: Math.sin(slope)*veliocity})
+      if(force)Matter.Body.applyForce(this.body, this.body.position,{y:  Math.sin(slope)*force/1500, x: Math.cos(slope)*force/1500})
     }
 };
 

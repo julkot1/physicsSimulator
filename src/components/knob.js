@@ -10,10 +10,10 @@ export default (props) => {
         bgrColor: '#17659C',
         
     };
-    const {value, setValue,name,text, min, max,step} = props;
+    const {value, setValue,name,text, min, max,step, children} = props;
 
     return <div className="knob-container">
-        <label>{text}</label>
+        <div>{children}</div>
         <Donut
         spaceMaxFromZero={false}
         diameter={200}

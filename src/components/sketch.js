@@ -60,7 +60,7 @@ const sketch = (p) => {
 export default ()=>{
 
   const [data, setData] = useData({
-    veliocity: 0,
+    force: 0,
     mass: 5,
     slope: 20,
     friction: 0,
