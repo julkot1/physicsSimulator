@@ -8,7 +8,7 @@ export default ({text, children, idKey}) =>{
             <label className="knob-title">{text}</label>     
             <FiHelpCircle data-tip data-for={idKey}/>
             <ReactTooltip id={idKey} effect='solid'>
-                <div>
+                <div className="info-container">
                     {children}
                 </div>
             </ReactTooltip>

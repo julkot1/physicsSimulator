@@ -16,7 +16,7 @@ export default (props) => {
         <div>{children}</div>
         <Donut
         spaceMaxFromZero={false}
-        diameter={200}
+        diameter={180}
         min={min||0}
         max={max||100}
         step={step||1}

@@ -1,5 +1,5 @@
 import './App.css';
-import Sketch from "./components/sketch";
+import Sketch from "./components/simulations/slope";
 import Navbar from "./components/Navbar";
 
 import { BrowserRouter as Router, Route} from "react-router-dom";
