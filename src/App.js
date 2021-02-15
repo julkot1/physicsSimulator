@@ -1,21 +1,21 @@
 import './App.css';
-import Matter from "matter-js";
 import Sketch from "./components/sketch";
-import Knob from "./components/knob";
-import Body from "./p5/body";
-
-/*
- <div className="knobs">
-        
-        </div>
-*/
+import Navbar from "./components/Navbar";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 export default () =>{
 
  
 
   return (
-    <div className="App">
-     <Sketch></Sketch>
+    <div  id="outer-container">
+        <Navbar/>
+       <div className="App" id="page-wrap">
+         <Router>
+            <Route exact component={Sketch} path="/slope"></Route>
+         </Router>
+
+       </div>
     </div>
+    
   );
 };
