@@ -8,7 +8,7 @@
 
 
 .bm-burger-bars {
-  background: #0087fc;
+  background: var(--blue);
 }
 
 .bm-cross-button {
@@ -21,7 +21,7 @@
 }
 
 .bm-menu {
-  background: #222329;
+  background: var(--bg2);
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
 
@@ -50,10 +50,10 @@
 }
 
 .sim:hover{
-  background-color: #0087fc;
+  background-color: var(--blue);
 }
 .calc:hover{
-  background-color: #509C2F;
+  background-color: var(--green);
 }
 
 .bm-item:focus{

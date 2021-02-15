@@ -22,7 +22,7 @@ export default (props) => {
         step={step||1}
         value={value}
         theme={theme}
-        onValueChange={x=>setValue(name,x)}
+        onValueChange={x=>setValue(x)}
         ariaLabelledBy={'my-label'}
         style={{padding: 15}}>
         </Donut>

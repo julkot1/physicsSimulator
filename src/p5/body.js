@@ -16,7 +16,6 @@ export default class Body{
     }
     
     setPositionFromAngle(angle, h, w,slopeH){
-      console.log(Math.sin(angle)*slopeH);
       Matter.Body.setPosition(this.body, {x: 40, y: h-Math.sin(angle)*(w/2)-30+Math.sin(angle)*slopeH})
     }
     setData({force, slope, friction, mass, frictionStatic}){

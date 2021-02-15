@@ -35,16 +35,16 @@
     left: 0;
     border-bottom-color: transparent;
     border-right-color: transparent;
-    border-top-color: var(--button);
-    border-left-color: var(--button);
+    border-top-color: var(--green);
+    border-left-color: var(--green);
 }
 .play-container button::after{
     bottom: 0;
     right: 0;
     border-top-color: transparent;
     border-left-color: transparent;
-    border-bottom-color: var(--button);
-    border-right-color: var(--button);
+    border-bottom-color: var(--green);
+    border-right-color: var(--green);
 }
 .play-container button:hover:after, .play-container button:hover:before{
     width: 100%;
@@ -60,16 +60,12 @@
 .knobs{
     display: flex;
     width: 100%;
-    margin-top: 20px;
     margin-bottom: 30px;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
 }
-:root{
-    --button: #509C2F;
-    
-}
+
 .knobs-list{
     display: flex;
     list-style: none;

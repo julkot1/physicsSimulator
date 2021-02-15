@@ -16,7 +16,7 @@ export default ()=>{
   });
 
   return <div className="sketch">
-    <div style={{  margin: '40px'}}><Fade left><P5Wrapper sketch={slopeSketch} data={data}></P5Wrapper></Fade></div>
+    <div style={{  marginTop: '20px'}}><Fade left><P5Wrapper sketch={slopeSketch} data={data}></P5Wrapper></Fade></div>
     
     <Panel d={data} set={setData}>
      

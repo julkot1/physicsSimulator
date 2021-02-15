@@ -23,6 +23,7 @@
     "react-reveal": "^1.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
+    "react-select": "^4.1.0",
     "react-tooltip": "^4.2.13",
     "web-vitals": "^1.1.0"
   },

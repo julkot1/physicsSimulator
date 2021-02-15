@@ -4,10 +4,18 @@ body, html {
   margin: 0 auto;
   height: 100% !important;
   background-color: #19171A;
+}
+*{
   color: #FFFFFF;
   font-family: 'Rubik', sans-serif;
 }
-
 #root{
   height: 100% !important;
+}
+:root{
+  --green: #509C2F;
+  --blue: #0087fc;
+  --red: #E9322E;
+  --bg1: #19171A;
+  --bg2: #312D33;
 }

@@ -7,9 +7,8 @@ import { MathComponent } from 'mathjax-react'
 
 export default ({d, set}) => {
 
-    const play = (e)=>{
+    const play = ()=>{
         set('play',!d.play);
-
     }
 
     return(
@@ -19,7 +18,7 @@ export default ({d, set}) => {
                 <div className='knobs'>
                     <ul className='knobs-list' >
                         <li>
-                            <Knob value={d.force} setValue={d.play?()=>{}:set} name='force'  max={10} step={0.5}>
+                            <Knob value={d.force} setValue={(x)=>{set('force', x); if(d.play==true)play();}}  max={10} step={0.5}>
                                 <KnobTitle text='Siła' idKey='force'>
                                     <h1>Siła</h1>
                                     <img src="https://eszkola.pl/img/galleries/thumb/home/12_wykres.jpg" width="350px" height="140px"></img>
@@ -33,7 +32,7 @@ export default ({d, set}) => {
                             </Knob>
                         </li>
                         <li>
-                            <Knob value={d.mass} setValue={d.play?()=>{}:set} name='mass'  min={2} max={50}>
+                            <Knob value={d.mass} setValue={(x)=>{set('mass', x); if(d.play==true)play();}}  min={2} max={50}>
                                     <KnobTitle text='Masa' idKey='mass'>
                                     <h1>Masa</h1>
                                     <img src="https://eszkola.pl/img/galleries/thumb/home/12_wykres.jpg" width="350px" height="140px"></img>
@@ -43,7 +42,7 @@ export default ({d, set}) => {
                             </Knob>
                         </li>
                         <li>
-                            <Knob value={d.slope} setValue={d.play?()=>{}:set} name='slope' min={0}  max={30}>
+                            <Knob value={d.slope} setValue={(x)=>{set('slope', x); if(d.play==true)play();}} min={0}  max={30}>
                                 <KnobTitle text='Nachylenie' idKey='slope'>
                                     <h1>Nachylenie</h1>
                                     <img src="https://eszkola.pl/img/galleries/thumb/home/12_wykres.jpg" width="350px" height="140px"></img>
@@ -52,13 +51,12 @@ export default ({d, set}) => {
                             </Knob>
                         </li>
                         <li>
-                            <Knob value={d.friction} setValue={d.play?()=>{}:set} name='friction'  >
+                            <Knob value={d.friction} setValue={(x)=>{set('friction', x); if(d.play==true)play();}}  >
                                 <KnobTitle text='Tarcie' idKey='friction'>
                                     <h1>Tarcie</h1>
                                     <img src="https://eszkola.pl/img/galleries/thumb/home/12_wykres.jpg" width="350px" height="140px"></img>
                                     <p>Ustawia współczynnik tarcia kinetycznego <MathComponent tex={String.raw`f_k`} display={false}/> pomniędzy ciałem a powieszchnią równi. 
-                                    Ustalona wartość jest dostosowana do wymagań silinka symulacji. W rzecywistości <MathComponent tex={String.raw`f_k`} display={false}/> przyjmuje wartości
-                                    <MathComponent tex={String.raw`f_k \in (0, 1)`} display={false}/> </p>
+                                    Ustalona wartość jest dostosowana do wymagań silinka symulacji. W rzecywistości <MathComponent tex={String.raw`f_k`} display={false}/></p>
                                     <p>Tarcie <MathComponent tex={String.raw`\vec T`} display={false}/> działa w przeciwnym zwrocie do wektora prędkość.</p>
                                     <MathComponent tex={String.raw`T=N*m`}/>
                                 </KnobTitle>
