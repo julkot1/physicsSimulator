@@ -9,6 +9,7 @@
     "keen-slider": "^5.4.0",
     "matter-js": "^0.16.1",
     "p5": "^1.2.0",
+    "poly-decomp": "^0.3.0",
     "react": "^17.0.1",
     "react-awesome-button": "^6.5.1",
     "react-burger-menu": "^3.0.3",

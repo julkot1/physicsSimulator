@@ -40,21 +40,28 @@
   margin: 10px;
   width: 230px;
   background: none;
+  text-align: left;
   text-decoration: none;
   padding: 5px;
   color: white;
   font-weight: 500;
+  border: none;
   transition: 100ms transform;
 }
 
-.bm-item:hover{
-  transform: scale(0.96);
-
+.sim:hover{
+  background-color: #0087fc;
 }
+.calc:hover{
+  background-color: #509C2F;
+}
+
 .bm-item:focus{
   outline: none;
 }
-.bm-item:active{
-  transform: scale(1.02);
 
+.dropdown-item{
+  transition: 100ms transform;
+  font-size: 20px;
+  margin: 4px;
 }
