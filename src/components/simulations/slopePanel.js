@@ -19,11 +19,11 @@ export default ({d, set}) => {
                     <ul className='knobs-list' >
                         <li>
                             <Knob value={d.force} setValue={(x)=>{set('force', x); if(d.play==true)play();}}  max={10} step={0.5}>
-                                <KnobTitle text='Siła' idKey='force'>
+                                <KnobTitle text='Siła' idKey='forceF'>
                                     <h1>Siła</h1>
                                     <img src="https://eszkola.pl/img/galleries/thumb/home/12_wykres.jpg" width="350px" height="140px"></img>
                                     <p >Ustawia wartość wektora siły <MathComponent tex={String.raw`\vec F`} display={false} />, który ma taki sam zwrot i kierunek
-                                    jak wektor <MathComponent tex={String.raw`\vec Q_\parallel`}  display={false}/>. Sumą tych wektorów jest <MathComponent tex={String.raw`\vec F_\parallel`}  display={false}/></p>
+                                    jak wektor <MathComponent tex={String.raw`\vec Q_\parallel`}  display={false}/>. Sumą tych wektorów jest <MathComponent tex={String.raw`\vec F`}  display={false}/></p>
                                     <p>
                                     <MathComponent tex={String.raw`\vec F_\parallel = \vec Q_\parallel + \vec F `}/>  <MathComponent tex={String.raw`\vec Q_\perp + \vec Q_\parallel = \vec Q`} />
                                     </p>
@@ -33,7 +33,7 @@ export default ({d, set}) => {
                         </li>
                         <li>
                             <Knob value={d.mass} setValue={(x)=>{set('mass', x); if(d.play==true)play();}}  min={2} max={50}>
-                                    <KnobTitle text='Masa' idKey='mass'>
+                                    <KnobTitle text='Masa' idKey='massF'>
                                     <h1>Masa</h1>
                                     <img src="https://eszkola.pl/img/galleries/thumb/home/12_wykres.jpg" width="350px" height="140px"></img>
                                     <p>Ustawia mase <MathComponent tex={String.raw`m`}  display={false}/> ciała na równi.</p>
@@ -43,7 +43,7 @@ export default ({d, set}) => {
                         </li>
                         <li>
                             <Knob value={d.slope} setValue={(x)=>{set('slope', x); if(d.play==true)play();}} min={0}  max={30}>
-                                <KnobTitle text='Nachylenie' idKey='slope'>
+                                <KnobTitle text='Nachylenie' idKey='slopeF'>
                                     <h1>Nachylenie</h1>
                                     <img src="https://eszkola.pl/img/galleries/thumb/home/12_wykres.jpg" width="350px" height="140px"></img>
                                     <p>Ustawia wartość kąta <MathComponent tex={String.raw`\alpha`} display={false}/> pomiędzy dłuższą przyprostokątną a przeciwprostokątną.</p>
@@ -52,13 +52,13 @@ export default ({d, set}) => {
                         </li>
                         <li>
                             <Knob value={d.friction} setValue={(x)=>{set('friction', x); if(d.play==true)play();}}  >
-                                <KnobTitle text='Tarcie' idKey='friction'>
+                                <KnobTitle text='Tarcie' idKey='frictionF'>
                                     <h1>Tarcie</h1>
                                     <img src="https://eszkola.pl/img/galleries/thumb/home/12_wykres.jpg" width="350px" height="140px"></img>
                                     <p>Ustawia współczynnik tarcia kinetycznego <MathComponent tex={String.raw`f_k`} display={false}/> pomniędzy ciałem a powieszchnią równi. 
-                                    Ustalona wartość jest dostosowana do wymagań silinka symulacji. W rzecywistości <MathComponent tex={String.raw`f_k`} display={false}/></p>
+                                    Ustalona wartość jest dostosowana do wymagań silinka symulacji.</p>
                                     <p>Tarcie <MathComponent tex={String.raw`\vec T`} display={false}/> działa w przeciwnym zwrocie do wektora prędkość.</p>
-                                    <MathComponent tex={String.raw`T=N*m`}/>
+                                    <MathComponent tex={String.raw`T=N*f_k`}/>
                                 </KnobTitle>
                             </Knob>
                         </li>

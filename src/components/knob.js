@@ -4,10 +4,10 @@ import {background} from "../colors";
 import './panel.css'
 export default (props) => {
     const theme = {
-        donutColor: '#0087fc',
+        donutColor: props.color?props.color:'#0087fc',
         centerColor: background,
         centerFocusedColor: background,
-        bgrColor: '#17659C',
+        bgrColor: props.bg?props.bg:'#17659C',
         
     };
     const {value, setValue,name,text, min, max,step, children} = props;

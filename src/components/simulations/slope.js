@@ -1,6 +1,6 @@
 import P5Wrapper from "react-p5-wrapper";
 import useData from "../../useData";
-import Panel from "./panel-slope";
+import Panel from "./slopePanel";
 import '../sketch.css'
 import {Fade} from "react-reveal";
 import slopeSketch from "../../p5/sketches/slopeSketch";

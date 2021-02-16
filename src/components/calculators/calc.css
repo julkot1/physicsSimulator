@@ -8,8 +8,9 @@
     margin: 15px 40px;
 }
 .calculator-wrapper{
+    overflow-x: hidden;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: row;
     margin-top: 20px;
     flex-wrap: wrap;
@@ -26,6 +27,10 @@
 .output-container{
     border: 4px var(--red) solid;
 }
+.outData-container{
+    align-self: center;
+
+}
 .input-container, .output-container{
     width: 40%;
     min-height: 400px;
@@ -34,7 +39,7 @@
     align-self: flex-start;
     background-color: var(--bg2);
     padding: 20px;
-    margin: 10px;
+    margin: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;

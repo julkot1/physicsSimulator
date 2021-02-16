@@ -3,8 +3,9 @@ import {useState} from 'react';
 import { Fade} from "react-reveal";
 import './navbar.css'
 export default ()=>{ 
-    const [slope, setSlope] = useState(false)
-    const [friction, setFriction] = useState(false)
+    const [slope, setSlope] = useState(false);
+    const [friction, setFriction] = useState(false);
+    const [collision, setCollision] = useState(false);
     return(
     <Menu pageWrapId="page-wrap" outerContainerId="outer-container" disableCloseOnEsc>
         <button onClick={()=>setSlope(!slope)}>Równia pochyła</button>
@@ -13,8 +14,9 @@ export default ()=>{
             <a className="bm-item dropdown-item calc"href="slope-calc">kalkulator</a>
         </Fade>
         <button onClick={()=>setFriction(!friction)}>Tarcie</button>
-        <Fade collapse when={friction}><a className="bm-item dropdown-item sim"href="/friction">symulator</a><a className="bm-item dropdown-item calc"href="/slope">kalkulator</a></Fade>
-        <button onClick={()=>setSlope(!slope)}>Równia pochyła</button>
+        <Fade collapse when={friction}><a className="bm-item dropdown-item sim"href="/friction">symulator</a><a className="bm-item dropdown-item calc"href="/friction-calc">kalkulator</a></Fade>
+        <button onClick={()=>setCollision(!collision)}>Zderzenie</button>
+        <Fade collapse when={collision}><a className="bm-item dropdown-item sim"href="/collision">symulator</a><a className="bm-item dropdown-item calc"href="/collision-calc">kalkulator</a></Fade>
     </Menu>);
 
 }
