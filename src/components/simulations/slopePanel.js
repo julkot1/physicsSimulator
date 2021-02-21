@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import Knobs from "./knobs";
 import '../panel.css'
-import Knob from '../knob';
 import {Fade} from 'react-reveal';
-import KnobTitle from '../KnobTitle';
 import { MathComponent } from 'mathjax-react'
 
 export default ({d, set}) => {
@@ -10,63 +8,69 @@ export default ({d, set}) => {
     const play = ()=>{
         set('play',!d.play);
     }
-
+    const data = [
+        {
+            value: d.force,
+            valueName: 'force',
+            max: 30,
+            step: 0.5,
+            text: 'Siła',
+            idKey: 'force',
+            tooltip: <>
+                <h1>Siła</h1>
+                <p >Ustawia wartość wektora siły <MathComponent tex={String.raw`\vec F`} display={false} />, który ma taki sam zwrot i kierunek
+                jak wektor <MathComponent tex={String.raw`\vec Q_\parallel`}  display={false}/>. Sumą tych wektorów jest <MathComponent tex={String.raw`\vec F`}  display={false}/></p>
+                <p>
+                <MathComponent tex={String.raw`\vec F_\parallel = \vec Q_\parallel + \vec F `}/>  <MathComponent tex={String.raw`\vec Q_\perp + \vec Q_\parallel = \vec Q`} />
+                </p>
+                                   
+            </>
+        },
+        {
+            value: d.mass,
+            valueName: 'mass',
+            max: 50,
+            min: 1,
+            text: 'Masa',
+            idKey: 'mass',
+            tooltip: <>
+                <h1>Masa</h1>
+                <p>Ustawia mase <MathComponent tex={String.raw`m`}  display={false}/> ciała na równi.</p>
+                <p> <MathComponent tex={String.raw` \left\{ \begin{array}{c}\vec Q=\vec Q_\perp+\vec Q_\parallel\\ Q=m*g\end{array}\right. `} /></p>
+            </>
+        },
+        {
+            value: d.slope,
+            valueName: 'slope',
+            max: 30,
+            text: 'Nachylenie',
+            idKey: 'slope',
+            tooltip: <>
+                <h1>Nachylenie</h1>
+                <p>Ustawia wartość kąta <MathComponent tex={String.raw`\alpha`} display={false}/> pomiędzy dłuższą przyprostokątną a przeciwprostokątną.</p>
+            </>
+        },
+        {
+            value: d.friction,
+            valueName: 'friction',
+            max: 100,
+            text: 'Tarcie',
+            idKey: 'friction',
+            tooltip: <>
+                <h1>Tarcie</h1>
+                <p>Ustawia współczynnik tarcia kinetycznego <MathComponent tex={String.raw`f_k`} display={false}/> pomniędzy ciałem a powieszchnią równi. 
+                Ustalona wartość jest dostosowana do wymagań silinka symulacji.</p>
+                <p>Tarcie <MathComponent tex={String.raw`\vec T`} display={false}/> działa w przeciwnym zwrocie do wektora prędkość.</p>
+                <MathComponent tex={String.raw`T=N*f_k`}/>
+            </>
+        },
+    ]
     return(
         <Fade left>
             <div className='panel'>
                 <div className='play-container'> <button onClick={play}>{d.play?'Restart':'Start'}</button> </div>
-                <div className='knobs'>
-                    <ul className='knobs-list' >
-                        <li>
-                            <Knob value={d.force} setValue={(x)=>{set('force', x); if(d.play==true)play();}}  max={10} step={0.5}>
-                                <KnobTitle text='Siła' idKey='forceF'>
-                                    <h1>Siła</h1>
-                                    <img src="https://eszkola.pl/img/galleries/thumb/home/12_wykres.jpg" width="350px" height="140px"></img>
-                                    <p >Ustawia wartość wektora siły <MathComponent tex={String.raw`\vec F`} display={false} />, który ma taki sam zwrot i kierunek
-                                    jak wektor <MathComponent tex={String.raw`\vec Q_\parallel`}  display={false}/>. Sumą tych wektorów jest <MathComponent tex={String.raw`\vec F`}  display={false}/></p>
-                                    <p>
-                                    <MathComponent tex={String.raw`\vec F_\parallel = \vec Q_\parallel + \vec F `}/>  <MathComponent tex={String.raw`\vec Q_\perp + \vec Q_\parallel = \vec Q`} />
-                                    </p>
-                                   
-                                </KnobTitle>
-                            </Knob>
-                        </li>
-                        <li>
-                            <Knob value={d.mass} setValue={(x)=>{set('mass', x); if(d.play==true)play();}}  min={2} max={50}>
-                                    <KnobTitle text='Masa' idKey='massF'>
-                                    <h1>Masa</h1>
-                                    <img src="https://eszkola.pl/img/galleries/thumb/home/12_wykres.jpg" width="350px" height="140px"></img>
-                                    <p>Ustawia mase <MathComponent tex={String.raw`m`}  display={false}/> ciała na równi.</p>
-                                    <p> <MathComponent tex={String.raw` \left\{ \begin{array}{c}\vec Q=\vec Q_\perp+\vec Q_\parallel\\ Q=m*g\end{array}\right. `} /></p>
-                                </KnobTitle>
-                            </Knob>
-                        </li>
-                        <li>
-                            <Knob value={d.slope} setValue={(x)=>{set('slope', x); if(d.play==true)play();}} min={0}  max={30}>
-                                <KnobTitle text='Nachylenie' idKey='slopeF'>
-                                    <h1>Nachylenie</h1>
-                                    <img src="https://eszkola.pl/img/galleries/thumb/home/12_wykres.jpg" width="350px" height="140px"></img>
-                                    <p>Ustawia wartość kąta <MathComponent tex={String.raw`\alpha`} display={false}/> pomiędzy dłuższą przyprostokątną a przeciwprostokątną.</p>
-                                </KnobTitle>
-                            </Knob>
-                        </li>
-                        <li>
-                            <Knob value={d.friction} setValue={(x)=>{set('friction', x); if(d.play==true)play();}}  >
-                                <KnobTitle text='Tarcie' idKey='frictionF'>
-                                    <h1>Tarcie</h1>
-                                    <img src="https://eszkola.pl/img/galleries/thumb/home/12_wykres.jpg" width="350px" height="140px"></img>
-                                    <p>Ustawia współczynnik tarcia kinetycznego <MathComponent tex={String.raw`f_k`} display={false}/> pomniędzy ciałem a powieszchnią równi. 
-                                    Ustalona wartość jest dostosowana do wymagań silinka symulacji.</p>
-                                    <p>Tarcie <MathComponent tex={String.raw`\vec T`} display={false}/> działa w przeciwnym zwrocie do wektora prędkość.</p>
-                                    <MathComponent tex={String.raw`T=N*f_k`}/>
-                                </KnobTitle>
-                            </Knob>
-                        </li>
-                    </ul>   
-                   
-                </div>
+                <Knobs data={data} d={d} set={set}/>
             </div>
         </Fade>
-       
     );
 }

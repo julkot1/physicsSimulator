@@ -19,7 +19,7 @@ export default class Body{
       Matter.Body.setPosition(this.body, {x: 40, y: h-Math.sin(angle)*(w/2)-30+Math.sin(angle)*slopeH})
     }
     setData({force, slope, friction, mass, frictionStatic}){
-      this.body.mass = mass/10;
+      Matter.Body.setMass(this.body, mass/10);
       this.body.friction = friction?friction/10:0;
       this.body.frictionStatic=frictionStatic?frictionStatic/10:0;
       if(force&&slope)Matter.Body.applyForce(this.body, this.body.position,{y:  Math.sin(slope)*force/1500, x: Math.cos(slope)*force/1500});
