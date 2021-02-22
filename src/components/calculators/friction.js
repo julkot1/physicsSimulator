@@ -50,7 +50,7 @@ const slove = ({m,F,fk,fs,t})=>{
     </div>
     const T = N*fk;
     const Fw = F-T;
-    if(Tmax>=F||F<=T) return <div>{forces}  <p>Za mała siła aby poruszyć ciało <MathComponent tex={String.raw`F>T_{smax}`} display={false}/></p></div>;
+    if(Tmax>=F) return <div>{forces}  <p>Za mała siła aby poruszyć ciało <MathComponent tex={String.raw`F>T_{smax}`} display={false}/></p></div>;
     
     const a = Fw/m;
     const s = a*t*t*0.5;

@@ -23,7 +23,6 @@ export default (props) => {
         value={value}
         theme={theme}
         onValueChange={x=>setValue(x)}
-        ariaLabelledBy={'my-label'}
         style={{padding: 15}}>
         </Donut>
     </div>

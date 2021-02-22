@@ -2,6 +2,7 @@ import Body from "../body";
 import Ground from "../ground";
 import PhysicEngine from "../physicEngine";
 import {background, background2} from "../../colors";
+import Force from "../force";
 export default  (p) => {
     const w = 1000, h = 320;
     let e;
@@ -14,7 +15,7 @@ export default  (p) => {
       boxA = new Body(-240-w/5, h-Math.sin(ang)*w-25, {});
       slope = new Ground(Math.sqrt(w/4-H)/2, h-(H/2), w/2, slopeH, {angle: ang},background2);
       e = new PhysicEngine(w,h, {boxA, slope}, p.canvas)
-  
+      boxA.rotate(ang);
       slope.setSlopeAngle(ang, w, h, e);
       boxA.setPositionFromAngle(ang, h, w, slopeH);
     }
@@ -43,7 +44,7 @@ export default  (p) => {
   
     p.draw = ()=>{
       p.background(p.color(background));
-      e.show(p)
+      e.show(p);
     };
     
   };

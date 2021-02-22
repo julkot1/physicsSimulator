@@ -43,7 +43,7 @@ const slove = ({ma,mb,va,vb,s})=>{
     if(ma<=0) return <p>Niepoprawna masa <MathComponent tex={String.raw`m_a>0`} display={false}/></p>;
     if(mb<=0) return <p>Niepoprawna masa <MathComponent tex={String.raw`m_b>0`} display={false}/></p>;
 
-    const t = s/(ma+mb);
+    const t = s/(va+vb);
     const pa = ma*va;
     const pb = mb*vb;
     const v = (pa-pb)/(ma+mb);
@@ -52,7 +52,7 @@ const slove = ({ma,mb,va,vb,s})=>{
         <p>Pęd początkowy ciała A:  <MathComponent tex={String.raw`p_a=${pa.toFixed(2)}{kg*m\above 1pt s}`}/> </p>
         <p>Pęd początkowy ciała B:  <MathComponent tex={String.raw`p_b=${pb.toFixed(2)}{kg*m\above 1pt s}`}/> </p>
         <p>Ciała zderzą się po czasie <MathComponent tex={String.raw`t=${t.toFixed(2)}s`} display={false}/> </p>
-        <p>Ciała będą poruszać się razem z prędością <MathComponent tex={String.raw`v_{ab}=${Math.abs(v).toFixed(2)} {m\above 1pt s}`} display={false}/> i zwrotem zgodnym ze zwrotem wektorapoczątkowej prędości <MathComponent tex={String.raw`\vec v_{${v>0?'a':'b'}}`} display={false}/> </p>
+        <p>Ciała będą poruszać się razem z prędością <MathComponent tex={String.raw`v_{ab}=${Math.abs(v).toFixed(2)} {m\above 1pt s}`} display={false}/> i zwrotem zgodnym ze zwrotem wektora początkowej prędości <MathComponent tex={String.raw`\vec v_{${v>0?'a':'b'}}`} display={false}/> </p>
     </div>
     
 

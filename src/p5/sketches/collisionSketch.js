@@ -8,8 +8,8 @@ export default  (p) => {
     let boxA,boxB;
     const create = ()=>{
      
-      boxA = new Body(100, h-35, {bg: '#0087fc'});
-      boxB = new Body(w-100, h-35, {bg: '#509C2F'});
+      boxA = new Body(100, h-25, {bg: '#0087fc'});
+      boxB = new Body(w-100, h-25, {bg: '#509C2F'});
       e = new PhysicEngine(w,h, {boxA, boxB}, p.canvas)
 
     }
