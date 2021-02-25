@@ -1,5 +1,5 @@
 import Body from "../body";
-import Ground from "../ground";
+import Matter from "matter-js";
 import PhysicEngine from "../physicEngine";
 import {background, background2} from "../../colors";
 export default  (p) => {
@@ -8,8 +8,8 @@ export default  (p) => {
     let boxA,boxB;
     const create = ()=>{
      
-      boxA = new Body(100, h-25, {bg: '#0087fc'});
-      boxB = new Body(w-100, h-25, {bg: '#509C2F'});
+      boxA = new Body(100, h, {bg: '#0087fc', body: {restitution: 0}},{mass: 0.5});
+      boxB = new Body(w-100, h, {bg: '#509C2F'},{mass: 0.5});
       e = new PhysicEngine(w,h, {boxA, boxB}, p.canvas)
 
     }
@@ -18,12 +18,12 @@ export default  (p) => {
         if(data.play)e.play()
         else{
           e.restart();
-          create();
+          boxA = new Body(100, h, {bg: '#0087fc'},{mass: data.massA});
+          boxB = new Body(w-100, h, {bg: '#509C2F'},{mass: data.massB});
+          e = new PhysicEngine(w,h, {boxA, boxB}, p.canvas)
   
-          boxA.setData({mass: data.massA});
           boxA.setVelocity({x:data.velocityA, y: 0});
      
-          boxB.setData({mass: data.massB});
           boxB.setVelocity({x:-data.velocityB, y: 0});
         }
       }
@@ -38,7 +38,37 @@ export default  (p) => {
   
     p.draw = ()=>{
       p.background(p.color(background));
-      e.show(p)
+      
+      
+      e.show(p); 
+      collides(p)
+
+
     };
+    const collides = (p)=>{
+      if(boxA&&boxB){
+        const collision = Matter.SAT.collides(boxA.body, boxB.body);
+
+        if (collision.collided) {
+          const x = (boxA.body.position.x+(Math.abs(boxA.body.position.x-boxB.body.position.x)/2));
+          const y = (boxA.body.position.y+boxB.body.position.y)/2;
+          const vectorW = boxA.velocityW+(boxA.velocityW||30);
+
+          boxB.showVelocity=false;
+          boxA.showVelocity=false;
+          p.push()
+          p.noStroke();
+          p.fill('#ffffff');
+          p.translate(x,y)
+          p.rect(0,0, vectorW, 4);
+          if(vectorW>0)p.triangle( vectorW, -8, vectorW, 10,vectorW+10, 0);
+          if(vectorW<0)p.triangle( vectorW, -8, vectorW, 10,vectorW-10, 0);
+          p.pop();
+        }else{
+          boxB.showVelocity=true;
+          boxA.showVelocity=true;
+        }
+      }
+    }
     
   };

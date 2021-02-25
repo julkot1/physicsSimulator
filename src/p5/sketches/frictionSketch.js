@@ -6,9 +6,9 @@ export default  (p) => {
     const w = 1000, h = 320;
     let e;
     let boxA;
-    const create = ()=>{
+    const create = (data)=>{
      
-      boxA = new Body(40, h-25, {});
+      boxA = new Body(40, h, {},data||{mass: 5});
       e = new PhysicEngine(w,h, {boxA}, p.canvas)
 
     }
@@ -17,9 +17,9 @@ export default  (p) => {
         if(data.play)e.play()
         else{
           e.restart();
-          create();
-          boxA.setData(data);
-          boxA.setForce({x: data.force, y:0})
+          create(data);
+          boxA.showVelocity=false
+          boxA.setFriction(data)
         }
       }
      
