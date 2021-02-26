@@ -12,7 +12,6 @@ export default class Body{
       this.setData(data);
     }
     show(p){
-      console.log(this.body.friction);
       p.fill(this.bg?this.bg:255);
       p.noStroke();
       p.beginShape();
@@ -56,14 +55,13 @@ export default class Body{
       this.d = 100*(mass)/80+20;
       if(force!=0)this.forceW=force*4;
       Matter.Body.setMass(this.body, mass);
-      if(slope) this.body.friction=friction/1000;
+      if(slope) this.body.friction=friction/10;
     }
     setFriction({friction, frictionStatic,mass,force}){
-      
-      if(frictionStatic*mass/100<force&&friction/100*mass<force){
-        this.setForce({x: force, y:0});
-        this.setForce({x: -force/Math.abs(force)*(friction/100*mass), y:0})
 
+      if(frictionStatic*mass/10<force&&friction/10*mass<force){
+        this.setForce({x: force, y:0});
+        this.body.friction=friction/10;
       }
     }
     setForce({x,y}){

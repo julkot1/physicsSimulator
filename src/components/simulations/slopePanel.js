@@ -1,4 +1,4 @@
-import Knobs from "./knobs";
+import Sliders from "./Sliders";
 import '../panel.css'
 import {Fade} from 'react-reveal';
 import { MathComponent } from 'mathjax-react'
@@ -53,7 +53,8 @@ export default ({d, set}) => {
         {
             value: d.friction,
             valueName: 'friction',
-            max: 100,
+            max: 1,
+            step: 0.01,
             text: 'Tarcie',
             idKey: 'friction',
             tooltip: <>
@@ -69,7 +70,8 @@ export default ({d, set}) => {
         <Fade left>
             <div className='panel'>
                 <div className='play-container'> <button onClick={play}>{d.play?'Restart':'Start'}</button> </div>
-                <Knobs data={data} d={d} set={set}/>
+                <Sliders
+             data={data} d={d} set={set}/>
             </div>
         </Fade>
     );

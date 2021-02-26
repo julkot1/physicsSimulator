@@ -1,12 +1,10 @@
 
 import '../panel.css'
-import Knob from '../knob';
 import {Fade} from 'react-reveal';
-import KnobTitle from '../KnobTitle';
-import Knobs from "./knobs";
+import Sliders from "./Sliders";
 
 export default ({d, set}) => {
-
+    
     const play = ()=>{
         set('play',!d.play);
     }
@@ -50,7 +48,7 @@ export default ({d, set}) => {
         <Fade left>
             <div className='panel'>
                 <div className='play-container'> <button onClick={play}>{d.play?'Restart':'Start'}</button> </div>
-                <Knobs data={data} d={d} set={set}/>
+                <Sliders data={data} d={d} set={set}/>
             </div>
         </Fade>
 

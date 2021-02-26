@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import '../panel.css'
 import {Fade} from 'react-reveal';
 import { MathComponent } from 'mathjax-react'
-import Knobs from "./knobs";
+import Sliders from "./Sliders";
 
 export default ({d, set}) => {
     const data = [
@@ -35,11 +35,12 @@ export default ({d, set}) => {
             value: d.frictionStatic,
             valueName: 'frictionStatic',
             min: 0,
-            max: 100,
+            max: 1,
+            step: 0.01,
             text: 'Tarcie statyczne',
             idKey: 'frictionS',
             tooltip: <>
-                <h1>Tarcie statyczne</h1>
+                <h1>Współczynnik tarcia statycznego</h1>
                 <p>Ustawia współczynnik tarcia kinetycznego <MathComponent tex={String.raw`f_s`} display={false}/> pomniędzy ciałem a powieszchnią równi. 
                 Ustalona wartość jest dostosowana do wymagań silinka symulacji.</p>
                 <p>Tarcie statyczne występuje między dwoma ciałami, które nie przemieszczają się względem siebie</p>
@@ -50,11 +51,13 @@ export default ({d, set}) => {
             value: d.friction,
             valueName: 'friction',
             min: 0,
-            max: 100,
-            text: 'Tarcie kinetyczne',
+            max: 1,
+            step: 0.01,
+            text: 'Tarcie Kinetyczne',
             idKey: 'friction',
             tooltip: <>
-                <h1>Tarcie Kinetyczne</h1>
+           
+                <h1> Współczynnik tarcia kinetycznego</h1>
                 <p>Ustawia współczynnik tarcia kinetycznego <MathComponent tex={String.raw`f_k`} display={false}/> pomniędzy ciałem a powieszchnią równi. 
                 Ustalona wartość jest dostosowana do wymagań silinka symulacji.</p>
                 <MathComponent tex={String.raw`T=N*f_k`}/>
@@ -69,7 +72,7 @@ export default ({d, set}) => {
         <Fade left>
             <div className='panel'>
                 <div className='play-container'> <button onClick={play}>{d.play?'Restart':'Start'}</button> </div>
-                <Knobs data={data} d={d} set={set}/>
+                <Sliders data={data} d={d} set={set}/>
             </div>
         </Fade>
        

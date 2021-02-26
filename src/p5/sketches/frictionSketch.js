@@ -8,7 +8,7 @@ export default  (p) => {
     let boxA;
     const create = (data)=>{
      
-      boxA = new Body(40, h, {},data||{mass: 5});
+      boxA = new Body(40, h, {body:{inertia: Infinity}},data||{mass: 5});
       e = new PhysicEngine(w,h, {boxA}, p.canvas)
 
     }
