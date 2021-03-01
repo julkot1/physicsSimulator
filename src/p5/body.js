@@ -2,7 +2,7 @@ import Matter, {Bodies} from "matter-js";
 
 export default class Body{
     constructor(x,y, param, data){
-      this.d = 100*(data.mass)/80+20;
+      this.d = 100*(data.mass)/80+40;
 
       this.body = Bodies.rectangle(x, y-this.d/2-5, this.d, this.d,Object.assign({mass: data.mass, frictionAir: 0, friction:0, frictionStatic:0}, param.body));
       this.bg = param.bg;
@@ -52,7 +52,7 @@ export default class Body{
       this.rotate(angle)
     }
     setData({force, slope, friction, mass}){
-      this.d = 100*(mass)/80+20;
+      this.d = 100*(mass)/80+40;
       if(force!=0)this.forceW=force*4;
       Matter.Body.setMass(this.body, mass);
       if(slope) this.body.friction=friction/10;

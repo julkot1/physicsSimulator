@@ -18,8 +18,8 @@ export default  (p) => {
         if(data.play)e.play()
         else{
           e.restart();
-          boxA = new Body(100, h, {bg: '#0087fc'},{mass: data.massA});
-          boxB = new Body(w-100, h, {bg: '#509C2F'},{mass: data.massB});
+          boxA = new Body(100, h, {bg: '#0087fc', body: {restitution: 0, inertia: Infinity}},{mass: data.massA});
+          boxB = new Body(w-100, h, {bg: '#509C2F', body: {restitution: 0, inertia: Infinity}},{mass: data.massB});
           e = new PhysicEngine(w,h, {boxA, boxB}, p.canvas)
   
           boxA.setVelocity({x:data.velocityA, y: 0});
