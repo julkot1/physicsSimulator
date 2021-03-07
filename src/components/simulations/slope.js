@@ -5,15 +5,8 @@ import '../sketch.css'
 import {Fade} from "react-reveal";
 import slopeSketch from "../../p5/sketches/slopeSketch";
 import { useState } from "react";
-import Chart from 'react-apexcharts'
 export default ()=>{
-  const options = {
-    chart: {
-      id: 'apexchart-example',
-      type: 'realtime'
-    },
-  
-  }
+
   const [data, setData] = useData({
     force: 0,
     mass: 5,
@@ -35,6 +28,5 @@ export default ()=>{
     <Panel d={data} set={setData}>
     
     </Panel>
-    <Chart options={options} series={s}  width={500} height={320} />
   </div>;
 }
