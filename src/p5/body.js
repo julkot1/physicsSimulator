@@ -1,85 +1,83 @@
 import Matter, {Bodies} from "matter-js";
+import Vector from "./vector";
 
 export default class Body{
-    constructor(x,y, param, data){
-      this.d = 100*(data.mass)/80+40;
+  constructor(x,y, {data, bg, body}){
+    this.setBodySize(data.mass)
+    this.body = Bodies.rectangle(x, y-this.size/2-5, this.size, this.size,Object.assign({mass: data.mass, frictionAir: 0, friction:0, frictionStatic:0}, body));
+    this.params = {bg: bg};
+    this.vectors = [];
 
-      this.body = Bodies.rectangle(x, y-this.d/2-5, this.d, this.d,Object.assign({mass: data.mass, frictionAir: 0, friction:0, frictionStatic:0}, param.body));
-      this.bg = param.bg;
-      this.forceW = 0;
-      this.velocityW = 0;
-      this.showVelocity = true;
-      this.setData(data);
-    }
-    show(p){
-      p.fill(this.bg?this.bg:255);
-      p.noStroke();
-      p.beginShape();
-      this.body.vertices.forEach(e => {
-        p.vertex(e.x, e.y);
-      });
-      p.endShape();
-      this.drawForceVector(p);
-      if(this.showVelocity)this.drawVelocityVector(p);
-    }
-
-    drawForceVector(p){
-      const {x, y} = this.body.position;
-      p.push()
-      p.noStroke();
-      p.fill('#0087fc');
-      p.translate(x,y)
-      p.rotate(this.body.angle);
-      p.rect(0,0, this.forceW, 4);
-      if(this.forceW>0)p.triangle(this.forceW+10, 0, this.forceW, -8, this.forceW, 10)
-      p.pop();
-    }
-    drawVelocityVector(p){
-      const {x, y} = this.body.position;
-      this.setVelocityW(this.body.velocity);
-      p.push()
-      p.noStroke();
-      p.fill('#ffffff');
-      p.translate(x,y)
-      p.rotate(this.body.angle);
-      p.rect(0,0, this.velocityW, 4);
-      if(this.velocityW>0)p.triangle( this.velocityW, -8, this.velocityW, 10,this.velocityW+10, 0);
-      if(this.velocityW<0)p.triangle( this.velocityW, -8, this.velocityW, 10,this.velocityW-10, 0);
-      p.pop();
-    }
-    setPositionFromAngle(angle, h, w,slopeH){
-      Matter.Body.setPosition(this.body, {x: 60, y: h-Math.sin(angle)*(w/2)-this.d/2+Math.sin(angle)*30});
-      this.rotate(angle)
-    }
-    setData({force, slope, friction, mass}){
-      this.d = 100*(mass)/80+40;
-      if(force!=0)this.forceW=force*4;
+    this.setBodyProperties(data);
+  }
+  addVector(color, lenghtFunction){
+    const vector = new Vector(color);
+    vector.setLength(()=>lenghtFunction(this.body, this.params));
+    this.vectors.push(vector);
+  }
+  show(p){
+    p.fill(this.params.bg?this.params.bg:255);
+    p.noStroke();
+    p.beginShape();
+    this.body.vertices.forEach(e => {
+      p.vertex(e.x, e.y);
+    });
+    p.endShape();
+    this.vectors.forEach(vec=>vec.update(p, this.body));
+  }
+  setBodyProperties({force, slope, friction, mass,  frictionStatic}){
+      this.params.friction = friction||0;
+      this.params.frictionStatic = frictionStatic||0;
+      this.params.slope = slope;
       Matter.Body.setMass(this.body, mass);
-      if(slope) this.body.friction=friction/10;
-    }
-    setFriction({friction, frictionStatic,mass,force}){
+      this.setBodySize(mass);
+      const a = (force||0)/this.body.mass;
+      this.params.forceAcceleration={x:a*Math.sin(this.body.angle),y:a*Math.cos(this.body.angle)};
+      this.params.force=force
+  }
+  setBaseVelocity({x,y}){
+    Matter.Body.setVelocity(this.body, {x:x,y:y});
+  }
+  acceleration(){
+    const angle = this.body.angle;
+  
+    const a1= this.params.forceAcceleration;
+    const a2 = Matter.Vector.add(a1, this.body.velocity);
 
-      if(frictionStatic*mass/10<force&&friction/10*mass<force){
-        this.setForce({x: force, y:0});
-        this.body.friction=friction/10;
-      }
-    }
-    setForce({x,y}){
-      Matter.Body.applyForce(this.body, this.body.position,{y: y/100, x:x/100});
-    }
-    setVelocity({x,y}){
-      Matter.Body.setVelocity(this.body, {x: x, y: y});
-    }
-    setVelocityW({x,y}){
-      let v = Math.sqrt(x*x+y*y)*4
-      if(v<0.09)v=0
-      if(v!=0)v+=40;
-      this.velocityW = Math.round(v*x/Math.abs(x)*100)/100;
-    }
-    rotate(angle){
-      Matter.Body.rotate(this.body, angle-this.body.angle);
-    }
-};
+    const a3 =  {x:  this.params.friction*Math.cos(angle)*-1, y:this.params.friction*Math.sin(angle)};
+    
+    const a3mag = Matter.Vector.magnitude(a3);
+    if(a3mag===NaN)a3mag=0;
+    const Tstatic = this.params.frictionStatic*Math.pow(Math.cos(angle),2);
+    let a = Matter.Vector.add(a2,a3);
+    const amag = Matter.Vector.magnitude(a2);
+   
+    if(Tstatic<Matter.Vector.magnitude(a))Matter.Body.setVelocity(this.body,amag>a3mag?a:{x:0,y:0});
+  }
+  accelerationOnSlope(){
+    const angle = this.body.angle;
+    console.log(Math.round(180/Math.PI*angle));
+    const v = (Math.round(180/Math.PI*angle)>0?Math.sin(Math.abs(angle)):0)+this.params.force||0;
+    const a3 =  {x:  this.params.friction*Math.cos(angle)*-1, y:this.params.friction*Math.sin(angle)};
+    const a3mag = Matter.Vector.magnitude(a3);
 
-
+    if((v-a3mag)>0){
+      const a2 = Matter.Vector.add(this.params.forceAcceleration, this.body.velocity);
+      let a = Matter.Vector.add(a2,a3);
+      Matter.Body.setVelocity(this.body,a);
+      return true;
+    }
+    return false;
+  }
+  rotate(angle){
+    Matter.Body.rotate(this.body, angle-this.body.angle);
+  }
+  setBodySize(mass){
+    this.size = 100*(mass)/80+40;
+  }
+  setPositionFromAngle(angle, h, w){
+    Matter.Body.setPosition(this.body, {x: 60, y: h-Math.sin(angle)*(w/2)-this.size/2+Math.sin(angle)*30});
+    this.rotate(angle)
+  }
+}
 

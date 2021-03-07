@@ -50,21 +50,7 @@ export default ({d, set}) => {
                 <p>Ustawia wartość kąta <MathComponent tex={String.raw`\alpha`} display={false}/> pomiędzy dłuższą przyprostokątną a przeciwprostokątną.</p>
             </>
         },
-        {
-            value: d.friction,
-            valueName: 'friction',
-            max: 1,
-            step: 0.01,
-            text: 'Tarcie',
-            idKey: 'friction',
-            tooltip: <>
-                <h1>Tarcie</h1>
-                <p>Ustawia współczynnik tarcia kinetycznego <MathComponent tex={String.raw`f_k`} display={false}/> pomniędzy ciałem a powieszchnią równi. 
-                Ustalona wartość jest dostosowana do wymagań silinka symulacji.</p>
-                <p>Tarcie <MathComponent tex={String.raw`\vec T`} display={false}/> działa w przeciwnym zwrocie do wektora prędkość.</p>
-                <MathComponent tex={String.raw`T=N*f_k`}/>
-            </>
-        },
+        
     ]
     return(
         <Fade left>
