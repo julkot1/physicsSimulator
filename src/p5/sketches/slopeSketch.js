@@ -7,13 +7,13 @@ export default  (p) => {
     const w = 1000, h = 320;
     let e,play;
     let boxA;
-    let slope, setV;
+    let slope, setV, vs=[];
     const slopeH = 10;
     const create = (data)=>{
       const ang =  20*Math.PI/180;
       const H = Math.sin(ang)*w/2;
       
-      boxA = new Body(-240-w/5, h-Math.sin(ang)*w, {bg:'#ffffff',data: data||{mass:5, restitution: 0}});
+      boxA = new Body(-240-w/5, h-Math.sin(ang)*w, {bg:'#ffffff',body:{ restitution: 0},data: data||{mass:5}});
       slope = new Ground(Math.sqrt(w/4-H)/2, h-(H/2), w/2, slopeH, {angle: ang},background2);
       e = new PhysicEngine(w,h, {boxA, slope}, p.canvas)
       slope.setSlopeAngle(ang, w, h, e);
@@ -44,19 +44,19 @@ export default  (p) => {
     };
     let time = 0, s=0;
     p.draw = ()=>{
+      p.background(p.color(background));
       if(play){
         time+=p.deltaTime;
-        if(time>100){
-          s++;
-          const c = {x:s, y:Matter.Vector.magnitude(boxA.body.velocity).toFixed(2)};
-          setV(c);
-          time=0;
-        }
-        boxA.acceleration();
+        boxA.accelerationOnSlope();
         e.update(p.deltaTime);
+       
+    
       }
-      p.background(p.color(background));
+    
+      p.pop();
       e.show(p);
+      p.push();
+      
     };
     
   };

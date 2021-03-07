@@ -9,7 +9,7 @@ export default ({d, set}) => {
         {
             value: d.force,
             valueName: 'force',
-            max: 30,
+            max: 50,
             step: 0.5,
             text: 'Siła',
             idKey: 'force',
@@ -22,7 +22,7 @@ export default ({d, set}) => {
             value: d.mass,
             valueName: 'mass',
             min: 1,
-            max: 50,
+            max: 200,
             text: 'Masa',
             idKey: 'mass',
             tooltip: <>

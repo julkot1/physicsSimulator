@@ -63,7 +63,7 @@ export default  (p) => {
           const x = (boxA.body.position.x+(Math.abs(boxA.body.position.x-boxB.body.position.x)/2));
           const y = (boxA.body.position.y+boxB.body.position.y)/2;
           const vectorW = length+(length||30);
-
+          boxB.params.drawVelocity=false;
           boxB.vectors[0].show=false;
           boxA.vectors[0].show=false;
           p.push()
@@ -77,6 +77,7 @@ export default  (p) => {
         }else{
           boxB.vectors[0].show=true;
           boxA.vectors[0].show=true;
+          boxB.params.drawVelocity=true;
         }
       }
     }

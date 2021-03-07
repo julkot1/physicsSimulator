@@ -2,7 +2,7 @@ import  Matter, {Bodies} from "matter-js";
 import {background} from "../colors";
 export default class Ground{
     constructor(x, y, w, h, param, color){
-        this.body = Bodies.rectangle(x, y, w, h, Object.assign({isStatic: true, inertia: Infinity, restitution: 1, frictionAir: 0, friction:0, frictionStatic:0}, param));
+        this.body = Bodies.rectangle(x, y, w, h, Object.assign({isStatic: true, inertia: Infinity, restitution: 0, frictionAir: 0, friction:0, frictionStatic:0}, param));
         this.w = w;
         this.h = h;
         this.color = color;

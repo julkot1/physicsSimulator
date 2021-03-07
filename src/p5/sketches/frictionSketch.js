@@ -13,7 +13,7 @@ export default  class FrictionSketch{
     const create = (dataD)=>{
      
       boxA = new Body(100, h, { body: {restitution: 0, inertia: Infinity}, data: dataD||{mass: 5}});
-      boxA.addVector('#ffffff', (b)=>{
+      boxA.addVector(background2, (b)=>{
         const {x,y} = b.velocity;
         let v = Math.sqrt(x*x+y*y)*4
         if(v<0.09)v=0
@@ -50,9 +50,6 @@ export default  class FrictionSketch{
         if(play){
           boxA.acceleration()
           e.update(p.deltaTime)
-          time++;
-          t+=p.deltaTime;
-          console.log(`v=${boxA.body.velocity.x} t=${time.toFixed(2)} m=${boxA.body.mass} x=${boxA.body.position.x}`);
         }
        
       }

@@ -12,14 +12,14 @@ export default ({d, set}) => {
         {
             value: d.massA,
             valueName: 'massA',
-            max: 50,
+            max: 200,
             min: 1,
             text: 'Masa ciała A',
         },
         {
             value: d.velocityA,
             valueName: 'velocityA',
-            max: 30,
+            max: 50,
             min: 0,
             step: 0.5,
             text: 'Prędkość ciała A',
@@ -27,7 +27,7 @@ export default ({d, set}) => {
         {
             value: d.massB,
             valueName: 'massB',
-            max: 50,
+            max: 200,
             min: 1,
             color: '#509C2F',
             bg: '#234F10',
@@ -36,7 +36,7 @@ export default ({d, set}) => {
         {
             value: d.velocityB,
             valueName: 'velocityB',
-            max: 30,
+            max: 50,
             min: 0,
             color: '#509C2F',
             bg: '#234F10',
