@@ -41,7 +41,7 @@ const slove = ({m,F,fk,fs,t})=>{
     const g = 9.81;
 
     if(m<=0) return <p>Niepoprawna masa <MathComponent tex={String.raw`m>0`} display={false}/></p>;
-    
+    if(fk>fs)return <p>Współczynnik tracia kinetycznego musi być mniejszy od statycznego <MathComponent tex={String.raw`f_k<f_s`} display={false}/></p>;
     const N = m*g;
     const Tmax = N*fs;
     const forces = <div>
@@ -55,14 +55,14 @@ const slove = ({m,F,fk,fs,t})=>{
     const a = Fw/m;
     const s = a*t*t*0.5;
     const v = a*t;
-    return<di>
+    return<div>
         {forces}
         <div>
             <p>Siła wypadkowa działających sił na ciało <MathComponent tex={String.raw`F_w=F-T=${Fw.toFixed(2)}N`}/></p>
             <p>Przyśpieszenie ciała <MathComponent tex={String.raw`a=${a.toFixed(2)}{m \above 1pt s^2}`}/> </p>
-            <p>Ciało po <MathComponent tex={String.raw`t=${t.toFixed(2)}s`} display={false}/> ruchu przebędzie drogę <MathComponent tex={String.raw`s(t)=${s.toFixed(2)}m`} display={false}/> oraz osiągnie prędkość <MathComponent tex={String.raw`v(t)=${v}{m \above 1pt s}`} display={false}/></p>
+            <p>Ciało po <MathComponent tex={String.raw`t=${t.toFixed(2)}s`} display={false}/> ruchu przebędzie drogę <MathComponent tex={String.raw`s(t)=${s.toFixed(2)}m`} display={false}/> oraz osiągnie prędkość <MathComponent tex={String.raw`v(t)=${v.toFixed(2)}{m \above 1pt s}`} display={false}/></p>
         </div>
-    </di>
+    </div>
 
 
 }

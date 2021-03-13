@@ -26,9 +26,13 @@
 }
 .output-container{
     border: 4px var(--red) solid;
+    display: flex;
 }
 .outData-container{
     align-self: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
 
 }
 .input-container, .output-container{

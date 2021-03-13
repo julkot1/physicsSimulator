@@ -5,7 +5,7 @@ export default (props) => {
 
     const {value, setValue,name,text, min, max,step, children} = props;
     return <div className="slider-container">
-        <div>{children}<div className="slider-value">{parseFloat(value.toFixed(2))}</div></div>
+        <div>{children}<div className="slider-value">{parseFloat(value.toFixed(2))}{text}</div></div>
         <Slider
         axis="x"
         xstep={step}

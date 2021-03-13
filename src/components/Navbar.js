@@ -9,9 +9,9 @@ export default ()=>{
     const [collision, setCollision] = useState(false);
     return(
     <Menu pageWrapId="page-wrap" outerContainerId="outer-container" disableCloseOnEsc>
-        <NavElement name="Równia pochyła">
-            <a className="bm-item dropdown-item sim"href="/slope">symulator</a>
-            <a className="bm-item dropdown-item calc"href="slope-calc">kalkulator</a>
+        <NavElement name="Orbitowanie">
+            <a className="bm-item dropdown-item sim"href="/orbit">symulator</a>
+            <a className="bm-item dropdown-item calc"href="orbit-calc">kalkulator</a>
         </NavElement>
         <NavElement name="Tarcie">
             <a className="bm-item dropdown-item sim"href="/friction">symulator</a>

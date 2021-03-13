@@ -50,6 +50,7 @@ export default  class FrictionSketch{
         if(play){
           boxA.acceleration()
           e.update(p.deltaTime)
+          console.log(`t ${time} v ${boxA.body.velocity.x} m${boxA.body.mass}`);
         }
        
       }

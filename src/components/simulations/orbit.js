@@ -1,16 +1,15 @@
 import P5Wrapper from "react-p5-wrapper";
 import useData from "../../useData";
-import Panel from "./slopePanel";
+import Panel from "./orbitPanel";
 import '../sketch.css'
 import {Fade} from "react-reveal";
-import slopeSketch from "../../p5/sketches/slopeSketch";
+import slopeSketch from "../../p5/sketches/orbitSketch";
 import { useState } from "react";
 export default ()=>{
 
   const [data, setData] = useData({
-    force: 0,
-    mass: 5,
-    slope: 20,
+    radius: 4.68,
+    mass: 5.97,
     play: false,
   });
 

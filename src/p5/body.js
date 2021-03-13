@@ -51,17 +51,18 @@ export default class Body{
     Matter.Body.setVelocity(this.body, {x:x,y:y});
   }
   acceleration(){
-    const angle = this.body.angle;
-  
-    const a = Matter.Vector.add(this.params.forceAcceleration, this.body.velocity);
-    console.log(this.params.forceAcceleration);
-    const T =  {x:  this.params.friction*Math.cos(angle)*-1, y:this.params.friction*Math.sin(angle)*-1};
-    
+
+    const T =  {x:  this.params.friction*-10, y:0};
     const Tmag = Matter.Vector.magnitude(T);
     if(Tmag===NaN)Tmag=0;
-    const Tstatic = this.params.frictionStatic*Math.pow(Math.cos(angle),2);
-    if(Tstatic<Matter.Vector.magnitude(a)&&Tmag<this.params.a)
-      Matter.Body.setVelocity(this.body,Matter.Vector.add(a,T));
+    const acceleration = {x: this.params.a-Tmag,y :0}
+    
+    
+    const Tstatic = this.params.frictionStatic;
+    if(Tstatic<this.params.a&&Tmag<this.params.a){
+      Matter.Body.setVelocity(this.body,Matter.Vector.add(acceleration,this.body.velocity));
+      console.log(this.params.a-Tmag);
+    }
   }
   accelerationOnSlope(){
     const a = Matter.Vector.add(this.params.forceAcceleration, this.body.velocity);
