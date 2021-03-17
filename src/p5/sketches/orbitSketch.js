@@ -1,58 +1,66 @@
-import Vector from "../vector";
-import {background, background2} from "../../colors";
+import Vector from '../vector'
+import { background, background2 } from '../../colors'
 
-export default  (p) =>{
-  const w = 1000, h = 530;
-  let play;
-  let radius = 150;
-  let r;
-  let angle = Math.PI/2;
-  const G = 3.2;
-  let mass = 0;
-  let  v;
-  let speed= Math.sqrt(G*mass/r)/r/2;
-  p.myCustomRedrawAccordingToNewPropsHandler = ({data,set}) => {
-    play = data.play;
-    mass = data.mass;
+export default (p) => {
+  const w = 1000,
+    h = 530
+  let play
+  let radius = 150
+  let r
+  let angle = Math.PI / 2
+  const G = 0.2
+  let mass = 0
+  let v
+  let speed = Math.sqrt((G * mass) / r) / r / 2
+  p.myCustomRedrawAccordingToNewPropsHandler = ({ data, set }) => {
+    play = data.play
+    mass = data.mass
     r = data.radius
-    radius =  120+data.radius*2.5;
-    if(!play){
-      angle = Math.PI/2;
-      speed= Math.sqrt(G*mass/r)/r/2
+    if (v) {
+      v.setLength(() => {
+        return 40 + speed * 50
+      })
+    }
+    radius = 120 + data.radius * 2.5
+    if (!play) {
+      angle = Math.PI / 2
+      speed = Math.sqrt((G * mass) / r) / r / 2
     }
   }
-  p.setup =  ()=>{
-    p.createCanvas(w, h);
-    v = new Vector('#ff0000');
-    v.setLength(()=>{
-      return  40+speed*10;
-    });
-  };
-  p.draw = ()=>{
-    p.background(p.color(background));
+  p.setup = () => {
+    p.createCanvas(w, h)
+    v = new Vector('#ff0000')
+    v.setLength(() => {
+      return 40 + speed * 50
+    })
+  }
+  p.draw = () => {
+    p.background(p.color(background))
     p.fill(125)
-    p.circle(w/2, h/2, 50+mass*3);
-    let x = w/2 ;
-    let y = h/2 + radius;
-    if(play){
-      speed = Math.sqrt(G*mass/r)/r/2;
-      x = w/2 +  radius * Math.cos(angle);
-      y = h/2 +  radius* Math.sin(angle);
-      angle+= speed;
-      
+    p.circle(w / 2, h / 2, 50 + mass * 3)
+    let x = w / 2
+    let y = h / 2 + radius
+    if (play) {
+      speed = Math.sqrt((G * mass) / r) / r / 2
+      x = w / 2 + radius * Math.cos(angle)
+      y = h / 2 + radius * Math.sin(angle)
+      angle += speed / 10
     }
-    p.ellipse(x, y, 30, 30);
+    p.ellipse(x, y, 30, 30)
     p.fill(255)
-    if(play)p.text(`${(Math.sqrt(6.67*mass/r)*Math.sqrt(10)).toFixed(2)} km/s`, w/2, h/2)
-    p.textAlign(p.CENTER);
+    if (play)
+      p.text(
+        `${(Math.sqrt((6.67 * mass) / r) * Math.sqrt(10)).toFixed(2)} km/s`,
+        w / 2,
+        h / 2
+      )
+    p.textAlign(p.CENTER)
     p.textSize(18)
-    v.update(p, {position: {x:x, y:y}, angle: angle+Math.PI/2})
-
-    
-  };
+    v.update(p, { position: { x: x, y: y }, angle: angle + Math.PI / 2 })
+  }
 }
 
-  /*
+/*
   var radius = 150;
 var angle = 0;
 var centerX = 300;
@@ -85,7 +93,6 @@ function draw() {
   angle = angle + speed;
 }
 */
-
 
 /*
 export default  (p) => {
